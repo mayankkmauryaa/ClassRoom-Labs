@@ -1,0 +1,79 @@
+/* q6.css - CSS-only responsive photo gallery */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.gallery h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* multiple columns */
+    gap: 1rem;
+}
+
+/* each item uses position:relative for caption overlay */
+.item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.08);
+}
+
+/* image fills container */
+.item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 250ms ease;
+}
+
+/* caption overlay hidden by default */
+.item figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* hover effects: scale image and reveal caption (requirement) */
+.item:hover img {
+    transform: scale(1.1);
+}
+
+.item:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* responsive adjustments */
+@media (max-width:900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:500px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

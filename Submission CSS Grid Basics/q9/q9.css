@@ -1,0 +1,74 @@
+/* q9.css - Newspaper / magazine columns */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #eef3f8;
+    font-family: Georgia, serif;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* Heading spans across columns using column-span: all (requirement) */
+.span-all {
+    column-span: all;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* three columns */
+.cols {
+    column-count: 3;
+    /* requirement */
+    column-gap: 2rem;
+    text-align: justify;
+    /* requirement */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* float image aligned left within text (requirement) */
+.float-image {
+    float: left;
+    width: 140px;
+    margin-right: 1rem;
+    margin-bottom: 0.6rem;
+    border-radius: 6px;
+}
+
+/* ensure heading style across columns */
+.cols h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+/* responsive: reduce columns on smaller screens */
+@media (max-width:900px) {
+    .cols {
+        column-count: 2;
+    }
+}
+
+@media (max-width:600px) {
+    .cols {
+        column-count: 1;
+    }
+
+    .float-image {
+        float: none;
+        display: block;
+        margin: 0 auto 1rem;
+    }
+}

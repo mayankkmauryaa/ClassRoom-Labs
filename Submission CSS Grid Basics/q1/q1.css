@@ -1,0 +1,127 @@
+/* q1.css - Personal portfolio */
+/* Basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f1724;
+    /* dark background for contrast */
+    --accent: #ffd166;
+    --text: #e6eef8;
+    --muted: #97a4b9;
+    --container-max: 1100px;
+}
+
+/* header fixed at top (requirement) */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(9, 12, 20, 0.95);
+    color: var(--text);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    z-index: 1000;
+    height: 4.5rem;
+    /* using rem */
+}
+
+/* container uses max-width and horizontal centering */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* header inner layout */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* name uses px unit to demonstrate variety */
+.name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* nav links */
+.main-nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 1rem;
+    /* px implicitly */
+    font-size: 0.95rem;
+}
+
+/* main: account for fixed header using padding-top in vh units */
+.main {
+    padding-top: 12vh;
+    /* different unit */
+    background: linear-gradient(180deg, #071226, #0b1b2a);
+    min-height: calc(100vh - 4.5rem);
+    color: var(--text);
+}
+
+/* hero layout uses flex with em and % */
+.hero-content {
+    display: flex;
+    gap: 2em;
+    /* em */
+    align-items: center;
+    padding: 3rem 0;
+}
+
+/* profile image sized with % inside its container */
+.profile {
+    width: 18%;
+    /* percent unit */
+    max-width: 180px;
+    border-radius: 12px;
+    border: 4px solid rgba(255, 209, 102, 0.12);
+}
+
+/* bio uses rem for spacing */
+.bio {
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+.bio h2 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+/* footer pinned to bottom */
+.site-footer {
+    background: #051021;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    /* stick to bottom: since page content may be shorter, set margin-top auto behavior */
+    position: relative;
+}
+
+/* small screens */
+@media (max-width: 700px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile {
+        width: 40%;
+    }
+
+    .main {
+        padding-top: 14vh;
+    }
+}

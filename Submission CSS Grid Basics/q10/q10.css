@@ -1,0 +1,172 @@
+/* q10.css - Master layout showing box model & positioning */
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --header-h: 64px;
+    --accent: rgba(31, 138, 112, 1);
+    --muted: #223;
+}
+
+body {
+    font-family: system-ui, Arial;
+    background: #f6f8fb;
+    color: var(--muted);
+}
+
+/* Header sticky at top (requirement) */
+.topnav {
+    position: sticky;
+    /* sticky header */
+    top: 0;
+    background: rgba(11, 26, 43, 0.98);
+    color: #fff;
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.2);
+}
+
+.topnav .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Hero with large background image and centered text (requirement) */
+.hero {
+    height: 52vh;
+    background-image: url('https://picsum.photos/id/1005/1600/900');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45));
+}
+
+/* center hero text using relative/absolute and transform as example of positioning */
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+/* About section with two columns: text + image (requirement) */
+.about-grid {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.about-text {
+    flex: 1;
+    padding: 1rem;
+}
+
+.about-image {
+    flex: 1;
+    padding: 1rem;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Services section with three boxes in a row (requirement) */
+.service-row {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.service {
+    flex: 1;
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid rgba(34, 50, 70, 0.06);
+    box-shadow: 0 8px 20px rgba(12, 20, 34, 0.04);
+    text-align: center;
+}
+
+/* Contact section with simple form */
+.mini-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.mini-form input {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #dfe8f4;
+}
+
+.mini-form button {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+}
+
+/* Footer */
+.site-footer {
+    padding: 1rem;
+    margin-top: 2rem;
+    text-align: center;
+    color: #667;
+}
+
+/* Demonstrate margin, padding, border, outline, relative/absolute/fixed positions and rgba/gradients */
+/* Example: outline on focus for accessibility */
+a:focus,
+button:focus,
+input:focus {
+    outline: 3px solid rgba(31, 138, 112, 0.15);
+    outline-offset: 2px;
+}
+
+/* Example absolute positioned decorative element inside hero (shows absolute positioning) */
+.hero .badge {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+}
+
+/* Relative: about-text could contain an element positioned relative to it (not shown) */
+
+/* Responsive layout using flex/grid */
+@media (max-width:900px) {
+    .about-grid {
+        flex-direction: column;
+    }
+
+    .service-row {
+        flex-direction: column;
+    }
+
+    .mini-form {
+        flex-direction: column;
+    }
+}

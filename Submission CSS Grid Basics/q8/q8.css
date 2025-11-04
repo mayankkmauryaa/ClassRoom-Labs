@@ -1,0 +1,97 @@
+/* q8.css - Dashboard layout with fixed header and sidebar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --header-h: 60px;
+    --sidebar-w: 240px;
+}
+
+body {
+    font-family: system-ui, Arial;
+    background: #f6f8fb;
+    color: #122;
+}
+
+/* fixed header */
+.dash-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    background: #0b1a2b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(2, 6, 23, 0.2);
+    z-index: 1000;
+}
+
+.dash-header .container {
+    display: flex;
+    align-items: center;
+}
+
+/* layout wrapper */
+.dash-wrap {
+    display: flex;
+    margin-top: var(--header-h);
+    min-height: calc(100vh - var(--header-h));
+}
+
+/* sidebar on left with full height (requirement) */
+.sidebar {
+    width: var(--sidebar-w);
+    min-height: calc(100vh - var(--header-h));
+    background: #061423;
+    color: #cfe6ff;
+    padding: 1rem;
+    position: sticky;
+    top: var(--header-h);
+    /* ensure it sits under header */
+}
+
+/* main content area */
+.dash-main {
+    flex: 1;
+    padding: 1.25rem;
+    background: #f3f6fb;
+}
+
+/* content boxes with shadows and spacing (requirement) */
+.container.main-grid {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.box {
+    flex: 1;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 26px rgba(15, 24, 34, 0.05);
+    min-height: 200px;
+}
+
+/* On smaller screens, sidebar stacks above content (requirement) */
+@media (max-width:800px) {
+    .dash-wrap {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        top: 0;
+    }
+
+    .container.main-grid {
+        flex-direction: column;
+    }
+}
