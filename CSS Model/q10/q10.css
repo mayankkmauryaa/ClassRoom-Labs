@@ -1,0 +1,115 @@
+/* q10.css - Navigation Bar with Transitions */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Roboto, Arial;
+    color: #0f172a;
+    background: #f7fafc;
+}
+
+/* Header */
+.site-header {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(10, 20, 40, 0.04);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+}
+
+/* Navbar layout */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: .85rem 1rem;
+}
+
+/* Brand */
+.brand {
+    font-weight: 800;
+    color: #0b63d4;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+/* Links - horizontally */
+.nav-links {
+    display: flex;
+    gap: .5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links a {
+    display: inline-block;
+    padding: .55rem .85rem;
+    border-radius: 8px;
+    color: #334155;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    /* smooth hover transitions */
+}
+
+/* Hover effects */
+.nav-links a:hover {
+    transform: translateY(-3px);
+    background: #eef2ff;
+    color: #0b63d4;
+    border-color: rgba(11, 99, 212, 0.12);
+}
+
+/* Active link highlight */
+.nav-links a.active {
+    background: #0b63d4;
+    color: #fff;
+    box-shadow: 0 6px 22px rgba(11, 99, 212, 0.12);
+}
+
+/* Responsive behavior: stack vertically below 700px */
+@media (max-width:700px) {
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: .5rem;
+        width: 100%;
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 1rem;
+    color: #64748b;
+    margin-top: 2rem;
+}
+
+/* Hero (just for visual) */
+.hero {
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.hero h1 {
+    margin-bottom: .5rem;
+    color: #0f172a;
+}
