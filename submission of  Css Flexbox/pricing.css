@@ -1,0 +1,100 @@
+/* pricing.css */
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f4f6fb
+}
+
+.pricing {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1000px;
+    align-items: stretch;
+    justify-content: center
+}
+
+.card {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e6e9f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform .3s, box-shadow .3s;
+    animation: fadeIn 700ms ease both
+}
+
+.card button {
+    margin-top: 1rem;
+    padding: .6rem 1rem;
+    border-radius: 6px;
+    border: 0;
+    background: #2b6cb0;
+    color: #fff
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px rgba(43, 108, 176, .12)
+}
+
+/* highlight middle card */
+.highlighted {
+    transform-origin: center;
+    flex: 1.15;
+    background: #e9f3ff;
+    border-color: #2b6cb0
+}
+
+/* fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+/* animate title (example keyframes) */
+@keyframes titleUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.animate-title {
+    animation: titleUp .9s ease both
+}
+
+/* stack vertically below 750px */
+@media (max-width:750px) {
+    .pricing {
+        flex-direction: column;
+        padding: 1rem
+    }
+
+    .highlighted {
+        flex: unset
+    }
+}
