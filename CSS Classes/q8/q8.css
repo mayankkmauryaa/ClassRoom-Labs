@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+
+/* page default - we'll override one box intentionally below */
+
+body {
+    font-family: system-ui, Arial;
+    margin: 0;
+    padding: 2rem;
+    background: #f8fafc;
+    color: #0b1320;
+}
+
+.wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* comparison row */
+.comparison {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* default content-box example — we need to override the global border-box for this one */
+.content-box {
+    box-sizing: content-box;
+    /* default behavior */
+    width: 300px;
+    padding: 30px;
+    border: 6px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+    text-align: left;
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+}
+
+/* border-box example */
+.border-boxed {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 30px;
+    border: 6px solid #a7f3d0;
+    border-radius: 10px;
+    background: #fff;
+    text-align: left;
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+}
+
+/* explanation text */
+.desc,
+.explain {
+    color: #475569;
+    max-width: 780px;
+    margin: .6rem auto;
+}
+
+/* Responsive stacking */
+@media (max-width: 700px) {
+    .comparison {
+        flex-direction: column;
+        align-items: center;
+    }
+}

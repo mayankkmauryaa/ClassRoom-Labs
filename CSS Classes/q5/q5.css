@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, Arial;
+    padding: 2rem;
+    background: linear-gradient(180deg, #fcfcff, #f2f6ff);
+}
+
+/* Container */
+.container {
+    text-align: center;
+}
+
+/* Button base */
+.btn {
+    padding: .6rem 1rem;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    margin: .5rem;
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+/* Primary */
+.btn.primary {
+    background: linear-gradient(180deg, #0b61ff, #0a54e0);
+    color: #fff;
+}
+
+/* Secondary */
+.btn.secondary {
+    background: linear-gradient(180deg, #10b981, #059669);
+    color: #fff;
+}
+
+/* Outline */
+.btn.outline {
+    background: transparent;
+    border: 2px solid #cbd5e1;
+    color: #0b1320;
+    box-shadow: none;
+}
+
+/* Disabled */
+.btn[disabled],
+.btn.disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Hover / active */
+.btn:hover:not([disabled]) {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(16, 24, 40, 0.09);
+}
+
+.btn:active:not([disabled]) {
+    transform: translateY(1px) scale(.995);
+}
+
+/* Focus visible (keyboard) */
+.btn:focus {
+    outline: 3px solid rgba(11, 97, 255, .16);
+    outline-offset: 3px;
+}
+
+/* Show :disabled pseudo-class example */
+.btn:disabled {
+    border-style: dashed;
+}
+
+/* Flexbox alignment */
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Small screens */
+@media (max-width: 520px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 80%;
+    }
+}
