@@ -1,54 +1,22 @@
-// =======================================================================
-//  BANKING INTEREST CALCULATOR
-//  Purpose: Calculate final balance based on account type, amount, and years
-// =======================================================================
+// Banking Interest Calculator
+// Purpose: Compute compound interest based on account type, amount, and duration.
 
-// --- Input Variables ---
-let accountType = "Fixed Deposit";   // Options: "Savings" or "Fixed Deposit"
-let amount = 150000;                 // Principal amount in ₹
-let years = 5;                       // Investment duration in years
+let accountType = "Fixed Deposit"; // or "Savings"
+let amount = 120000;
+let years = 3;
 
-// --- Constants for Interest Rates ---
-const SAVINGS_RATE = 4;              // 4% annual for savings
-const FIXED_DEPOSIT_RATE = 6.5;      // 6.5% annual for fixed deposit
-const BONUS_THRESHOLD = 100000;      // Extra 1% if deposit > ₹1,00,000
-const BONUS_RATE = 1;                // 1% bonus rate
+let rate = accountType === "Fixed Deposit" ? 6.5 : 4.0;
 
-// --- Determine Base Interest Rate Based on Account Type ---
-let rate;
-
-if (accountType.toLowerCase() === "savings") {
-    rate = SAVINGS_RATE;
-    console.log("Account Type: Savings Account (4% base interest)");
-} else if (accountType.toLowerCase() === "fixed deposit") {
-    rate = FIXED_DEPOSIT_RATE;
-    console.log("Account Type: Fixed Deposit (6.5% base interest)");
-} else {
-    console.log("Invalid account type entered. Defaulting to Savings rate (4%).");
-    rate = SAVINGS_RATE;
+// Extra 1% bonus for large deposits
+if (amount > 100000) {
+  rate += 1;
 }
 
-// --- Apply Bonus Interest if Amount > ₹1,00,000 ---
-if (amount > BONUS_THRESHOLD) {
-    rate += BONUS_RATE;
-    console.log("Bonus interest of +1% applied for high deposit amount.");
-}
+let total = amount * Math.pow(1 + rate / 100, years);
 
-// --- Compound Interest Formula ---
-// Formula: total = amount * (1 + rate/100) ^ years
-let total = amount * Math.pow((1 + rate / 100), years);
-
-// --- Rounding to Two Decimals ---
-total = total.toFixed(2);
-
-// --- Final Output ---
-console.log("=================================================");
-console.log("🏦 BANK INTEREST CALCULATION SUMMARY");
-console.log("-------------------------------------------------");
-console.log(`Account Type     : ${accountType}`);
-console.log(`Principal Amount : ₹${amount}`);
-console.log(`Interest Rate    : ${rate}%`);
-console.log(`Duration         : ${years} years`);
-console.log("-------------------------------------------------");
-console.log(`💰 Final Balance  : ₹${total}`);
-console.log("=================================================");
+console.log("=== Banking Interest Summary ===");
+console.log("Account Type:", accountType);
+console.log("Principal Amount: ₹" + amount);
+console.log("Interest Rate:", rate + "%");
+console.log("Duration:", years, "years");
+console.log("Final Balance: ₹" + total.toFixed(2));

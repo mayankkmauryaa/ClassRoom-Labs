@@ -1,72 +1,29 @@
-// ==========================================================================
-//  MARKS ANALYZER
-//  Purpose: Analyze student marks, calculate average, percentage, and grade
-// ==========================================================================
+// Marks Analyzer
+// Purpose: Calculate average, grade, and failure condition.
 
-// --- Input: Marks for 5 subjects (out of 100) ---
-let marks = [85, 92, 78, 88, 69]; // Example marks array
-
-// --- Constants ---
-const SUBJECT_COUNT = marks.length;
-const MAX_MARKS_PER_SUBJECT = 100;
-
-// --- Step 1: Calculate Total Marks ---
+let marks = [88, 92, 70, 65, 30];
 let total = 0;
-for (let i = 0; i < SUBJECT_COUNT; i++) {
-    total += marks[i];
+let fails = 0;
+
+for (let m of marks) {
+  total += m;
+  if (m < 40) fails++;
 }
 
-// --- Step 2: Calculate Average and Percentage ---
-let average = total / SUBJECT_COUNT;
-let percentage = (total / (SUBJECT_COUNT * MAX_MARKS_PER_SUBJECT)) * 100;
+let average = total / marks.length;
 
-// --- Step 3: Determine Grade Based on Percentage ---
+// Determine grade
 let grade = "";
+if (average >= 90) grade = "A+";
+else if (average >= 75) grade = "A";
+else if (average >= 60) grade = "B";
+else if (average >= 40) grade = "C";
+else grade = "Fail";
 
-if (percentage >= 90 && percentage <= 100) {
-    grade = "A+";
-} else if (percentage >= 75 && percentage <= 89) {
-    grade = "A";
-} else if (percentage >= 60 && percentage <= 74) {
-    grade = "B";
-} else if (percentage >= 40 && percentage <= 59) {
-    grade = "C";
-} else {
-    grade = "Fail";
-}
+console.log("=== Marks Summary ===");
+console.log("Marks:", marks);
+console.log("Average:", average.toFixed(2));
+console.log("Grade:", grade);
 
-// --- Step 4: Check for Individual Subject Fails ---
-let failedSubjects = 0;
-for (let i = 0; i < SUBJECT_COUNT; i++) {
-    if (marks[i] < 40) {
-        failedSubjects++;
-    }
-}
-
-// --- Step 5: Determine Final Status ---
-let finalStatus = "";
-
-if (failedSubjects >= 2) {
-    finalStatus = "Repeat Year";
-} else if (failedSubjects === 1 && percentage >= 40) {
-    finalStatus = "Supplementary Exam Required";
-} else {
-    finalStatus = "Pass";
-}
-
-// --- Step 6: Output the Detailed Report ---
-console.log("=================================================");
-console.log("📊 STUDENT MARKS ANALYSIS");
-console.log("-------------------------------------------------");
-for (let i = 0; i < SUBJECT_COUNT; i++) {
-    console.log(`Subject ${i + 1}: ${marks[i]} / ${MAX_MARKS_PER_SUBJECT}`);
-}
-console.log("-------------------------------------------------");
-console.log(`Total Marks   : ${total}`);
-console.log(`Average Marks : ${average.toFixed(2)}`);
-console.log(`Percentage    : ${percentage.toFixed(2)}%`);
-console.log(`Grade         : ${grade}`);
-console.log(`Failed Subjects: ${failedSubjects}`);
-console.log("-------------------------------------------------");
-console.log(`🏁 Final Result: ${finalStatus}`);
-console.log("=================================================");
+if (fails >= 2) console.log("Result: Repeat Year");
+else console.log("Result: Pass");

@@ -1,48 +1,29 @@
-// =============================================================
-//  E-COMMERCE DELIVERY ESTIMATOR
-//  Purpose: Estimate total order cost and delivery time
-// =============================================================
+// E-Commerce Delivery Estimator
+// Purpose: Calculate total cost and delivery time based on order value, membership, and address type.
 
-// --- Input Variables ---
-let orderAmount = 400;       // Example: ₹400 order
-let isPremium = false;       // true if user is a premium member
-let isRemote = true;         // true if address is remote
+let orderAmount = 450;
+let isPremium = false;
+let isRemote = true;
 
-// --- Constants ---
-const DELIVERY_FEE = 50;     // ₹50 delivery charge if applicable
-const BASE_DELIVERY_DAYS = 3; // Standard delivery time in days
-const REMOTE_EXTRA_DAYS = 2; // Additional days for remote areas
-
-// --- Logic for Delivery Fee ---
-// Rule: If order < ₹500, add ₹50 fee unless user is premium
 let deliveryFee = 0;
+let deliveryDays = 3; // Normal delivery
 
-if (!isPremium && orderAmount < 500) {
-    deliveryFee = DELIVERY_FEE;
-    console.log("Delivery fee of ₹50 applied (order below ₹500 and not premium).");
-} else {
-    console.log("No delivery fee applied (either premium user or order ≥ ₹500).");
+// Apply delivery fee rules
+if (orderAmount < 500 && !isPremium) {
+    deliveryFee = 50;
 }
 
-// --- Logic for Delivery Time ---
-// Base 3 days, add 2 more if address is remote
-let deliveryDays = BASE_DELIVERY_DAYS;
+// Add extra delivery days for remote locations
 if (isRemote) {
-    deliveryDays += REMOTE_EXTRA_DAYS;
-    console.log("Remote area detected: +2 days added to delivery time.");
+    deliveryDays += 2;
 }
 
-// --- Total Cost Calculation ---
 let totalCost = orderAmount + deliveryFee;
 
-// --- Final Output ---
-console.log("======================================");
-console.log("🛒 E-Commerce Delivery Summary");
-console.log("--------------------------------------");
-console.log(`Order Amount       : ₹${orderAmount}`);
-console.log(`Premium Member     : ${isPremium ? "Yes" : "No"}`);
-console.log(`Remote Address     : ${isRemote ? "Yes" : "No"}`);
-console.log(`Delivery Fee       : ₹${deliveryFee}`);
-console.log(`Total Cost         : ₹${totalCost}`);
-console.log(`Estimated Delivery : ${deliveryDays} days`);
-console.log("======================================");
+console.log("=== Delivery Estimator Summary ===");
+console.log("Base Order Amount: ₹" + orderAmount);
+console.log("Premium Member:", isPremium);
+console.log("Remote Area:", isRemote);
+console.log("Delivery Fee: ₹" + deliveryFee);
+console.log("Total Cost: ₹" + totalCost);
+console.log("Estimated Delivery Time:", deliveryDays, "days");
