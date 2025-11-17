@@ -1,0 +1,70 @@
+/* q4.css - Article with ::first-letter and ::first-line */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.article header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.article .meta {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Body paragraphs: consistent spacing between paragraphs (requirement) */
+.content p {
+    margin: 0 0 1.15rem 0;
+    /* consistent margin between paragraphs */
+    line-height: 1.75;
+    text-align: justify;
+    /* nicer reading */
+}
+
+/* Style first letter bigger (requirement) */
+.content p::first-letter {
+    font-size: 2.8rem;
+    font-weight: 700;
+    float: left;
+    line-height: 1;
+    margin-right: 0.5rem;
+    color: #1f8a70;
+}
+
+/* Make first line bold (requirement) */
+.content p::first-line {
+    font-weight: 700;
+}
+
+/* highlight keywords using <mark> styling */
+.content mark {
+    background: #ffe9b8;
+    /* custom bg color */
+    color: #5a3b00;
+    padding: 0.05rem 0.15rem;
+    border-radius: 3px;
+}
+
+/* emphasize blockquote with left border & background */
+blockquote {
+    margin: 1.25rem 0;
+    padding: 1rem 1rem;
+    background: rgba(31, 138, 112, 0.06);
+    border-left: 6px solid #1f8a70;
+}
+
+/* readable fonts (system) */
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #111;
+    background: #fbfcfe;
+}

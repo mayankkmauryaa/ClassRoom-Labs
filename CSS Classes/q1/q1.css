@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.4;
+    color: #111;
+    background: #f6f8fb;
+}
+
+/* Flex row for examples */
+.examples {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Individual card */
+.example {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+/* Links */
+a {
+    color: #0b61ff;
+    text-decoration: none;
+    padding: .25rem .4rem;
+    border-radius: 6px;
+    transition: background .18s ease, color .18s ease, transform .12s ease;
+}
+
+/* :hover on links */
+a:hover {
+    background: #e7f0ff;
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+button {
+    padding: .5rem .75rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    cursor: pointer;
+    margin-right: .5rem;
+    transition: box-shadow .15s ease, transform .12s ease, background .12s ease;
+}
+
+/* :focus styling - keyboard focus visible */
+button:focus {
+    outline: 3px solid rgba(11, 97, 255, .18);
+    box-shadow: 0 4px 12px rgba(11, 97, 255, .12);
+}
+
+/* :active pressed effect */
+button:active {
+    transform: translateY(1px) scale(.995);
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+}
+
+/* nth-child example */
+.demo-list {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: .4rem;
+}
+
+.demo-list li {
+    padding: .5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+/* color every 2nd item */
+.demo-list li:nth-child(2n) {
+    background: #e8f0ff;
+    font-weight: 600;
+}
+
+/* Responsive small screen */
+@media (max-width: 720px) {
+    .examples {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .example {
+        width: 100%;
+    }
+}

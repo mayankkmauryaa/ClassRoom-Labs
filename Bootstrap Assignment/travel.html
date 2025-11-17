@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Travel Agency</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet" href="travel.css">
+    </head>
+    <body>
+        <header class="bg-primary text-white text-center py-3">
+            <h1>Explore Destinations</h1>
+        </header>
+
+        <main class="container py-5">
+            <!-- Carousel -->
+            <div id="travelCarousel" class="carousel slide mb-5"
+                data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <img
+                            src="https://res.cloudinary.com/dtljonz0f/image/upload/c_auto,ar_1:1,w_3840,g_auto/f_auto/q_auto/v1/gc-v1/paris/3%20giorni%20a%20Parigi%20Tour%20Eiffel?_a=BAVAZGE70"
+                            class="d-block w-100" alt="Paris">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Paris, France</h5>
+                            <p>The city of love awaits you!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img
+                            src="https://afar.brightspotcdn.com/dims4/default/ea28eda/2147483647/strip/false/crop/3000x1688+0+275/resize/1200x675!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fb2%2Ff4%2F9a1ebe3f427f8e5eb937f8df8998%2Ftravelguides-maldives-videomediastudioeurope-shutterstock.jpg"
+                            class="d-block w-100"
+                            alt="Maldives">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Maldives</h5>
+                            <p>Crystal clear waters and white sandy beaches.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnqLgvl4MYwd--diUst4jEKyHYdNHs3MSVQ&s"
+                            class="d-block w-100" alt="Tokyo">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Tokyo, Japan</h5>
+                            <p>Experience the vibrant city life.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button"
+                    data-bs-target="#travelCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    data-bs-target="#travelCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <h5>Booking Completion</h5>
+            <div class="progress mb-5">
+                <div
+                    class="progress-bar progress-bar-striped progress-bar-animated"
+                    style="width: 70%">70%</div>
+            </div>
+        </main>
+
+        <footer class="bg-dark text-white text-center py-3">
+            Contact us: info@travelagency.com | +91 12345 67890
+        </footer>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

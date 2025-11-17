@@ -1,0 +1,127 @@
+/* q8.css - Box Model Exploration */
+* {
+    box-sizing: border-box;
+}
+
+/* note: we'll show difference in demo but keep general layout manageable */
+body {
+    margin: 0;
+    font-family: system-ui, Roboto, Arial;
+    padding: 2rem;
+    background: #f9fafb;
+    color: #111;
+}
+
+/* Centering the demonstration */
+.center {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+/* Visual layered box */
+.box-model-demo {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Outer margin demonstration */
+.outer {
+    margin: 24px;
+    /* explicit margin outside the border */
+    background: transparent;
+}
+
+/* Border layer (visible border) */
+.border-layer {
+    border: 6px solid #f59e0b;
+    padding: 12px;
+    /* padding sits between border and padding-layer */
+    border-radius: 10px;
+    background: #fff;
+}
+
+/* Padding layer */
+.padding-layer {
+    background: #eef2ff;
+    padding: 18px;
+    border-radius: 6px;
+}
+
+/* Content layer */
+.content-layer {
+    background: #fff;
+    padding: 12px;
+    outline: 2px dashed rgba(100, 116, 139, 0.18);
+}
+
+/* Explanations */
+.explanations {
+    max-width: 320px;
+    font-size: .95rem;
+    color: #334155;
+}
+
+.explanations dt {
+    font-weight: 700;
+    margin-top: .6rem;
+}
+
+.explanations dd {
+    margin-left: 0;
+    margin-bottom: .25rem;
+    color: #475569;
+}
+
+/* Box-sizing demonstration blocks */
+.box-sizing-demo {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+}
+
+.bs-default,
+.bs-border-box {
+    width: 320px;
+    background: #fff;
+    padding: 12px;
+    border: 1px solid #e6e9ef;
+    border-radius: 8px;
+}
+
+/* Show the difference with an inner element sized at 100% width and with borders/padding */
+.bs-default p,
+.bs-border-box p {
+    margin: 0;
+    padding: 8px;
+    background: #f8fafc;
+    border: 6px solid #dbeafe;
+}
+
+/* Now specifically demonstrate the alternative box-sizing */
+.bs-default p {
+    box-sizing: content-box;
+}
+
+.bs-border-box p {
+    box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width:760px) {
+    .box-model-demo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .explanations {
+        max-width: 100%;
+    }
+}

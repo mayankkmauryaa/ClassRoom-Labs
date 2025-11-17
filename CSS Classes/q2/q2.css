@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f8fafc, #eef2ff);
+    padding: 2rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.tooltip-row {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Tooltip wrapper is position: relative */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    font-size: 1.1rem;
+}
+
+/* target appearance */
+.target {
+    display: inline-block;
+    padding: .6rem .75rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+    cursor: default;
+}
+
+/* tooltip text - absolutely positioned and hidden by default */
+.tip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    bottom: 100%;
+    white-space: nowrap;
+    padding: .45rem .6rem;
+    border-radius: 6px;
+    font-size: .9rem;
+    background: rgba(20, 20, 30, 0.92);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+    z-index: 10;
+}
+
+/* small arrow */
+.tip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(20, 20, 30, 0.92) transparent transparent transparent;
+}
+
+/* show on hover */
+.tooltip:hover .tip,
+.tooltip:focus-within .tip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .tooltip-row {
+        gap: .6rem;
+    }
+
+    .tip {
+        font-size: .85rem;
+    }
+}

@@ -1,0 +1,79 @@
+/* portfolio.css */
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Segoe UI, Arial;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #f4f4f8
+}
+
+.site-header .name {
+    font-weight: 700
+}
+
+.site-header .nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #333
+}
+
+.main-area {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    flex: 1;
+    align-items: center;
+    justify-content: center
+}
+
+.about {
+    flex: 1;
+    min-width: 220px
+}
+
+.portrait {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.portrait img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px
+}
+
+/* footer centered */
+.site-footer {
+    text-align: center;
+    padding: 1rem;
+    background: #eee
+}
+
+/* Responsive: stack vertically under 700px */
+@media (max-width:700px) {
+    .site-header {
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center
+    }
+
+    .main-area {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem
+    }
+}

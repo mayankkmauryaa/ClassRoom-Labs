@@ -1,0 +1,129 @@
+/* q2.css - Multi-section informational page */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --container: 1100px;
+    --light: #fafafa;
+    --dark: #0b1a2b;
+}
+
+/* header/nav */
+header .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--dark);
+    color: var(--light);
+}
+
+header nav a {
+    color: var(--light);
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+/* each .section takes full-width background (requirement) */
+.section {
+    padding: 4rem 1rem;
+    color: #fff;
+    min-height: 50vh;
+}
+
+/* intro: solid background */
+.intro {
+    background: linear-gradient(180deg, #2a5f7d, #16384a);
+}
+
+/* history section uses a fixed background image (parallax-like) */
+.history {
+    background-image: url('https://picsum.photos/id/1011/1600/900');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* requirement */
+}
+
+/* linear gradient applied in one section */
+.gradient-linear {
+    background: linear-gradient(90deg, rgba(36, 30, 120, 0.9), rgba(255, 150, 60, 0.85));
+    color: #fff;
+}
+
+/* radial gradient in a different section */
+.gradient-radial {
+    background: radial-gradient(circle at 30% 30%, rgba(200, 230, 255, 0.9), rgba(10, 30, 60, 0.95));
+    color: #012;
+    padding: 5rem 1rem;
+}
+
+/* second fixed background section for parallax effect */
+.nature {
+    background-image: url('https://picsum.photos/id/1018/1600/900');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* second requirement */
+}
+
+/* spacing and borders to define sections */
+.section .inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+}
+
+/* demonstrate padding, margin, border (requirement) */
+.section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    /* headings different sizes/weights */
+    margin-bottom: 1rem;
+}
+
+.section p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* footer */
+footer {
+    padding: 1rem;
+    text-align: center;
+    background: #061423;
+    color: #cfe6ff;
+}
+
+/* heading sizes/weights: demonstrate variety */
+.intro h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+.history h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.sights h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* responsive */
+@media (max-width:800px) {
+    .section {
+        padding: 2rem 0.5rem;
+    }
+
+    .section .inner {
+        padding: 1rem;
+    }
+}

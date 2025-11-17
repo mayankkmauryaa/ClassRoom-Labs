@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Q8 — Box Model Exploration</title>
+        <link rel="stylesheet" href="q8.css" />
+    </head>
+    <body>
+        <main class="center">
+            <section class="box-model-demo" aria-label="Box model layers">
+                <div class="outer">
+                    <div class="border-layer">
+                        <div class="padding-layer">
+                            <div class="content-layer">
+                                <p><strong>Content</strong> — this is the
+                                    content box.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="explanations">
+                    <dl>
+                        <dt>Content</dt>
+                        <dd>The actual content area (text/images)</dd>
+
+                        <dt>Padding</dt>
+                        <dd>Space between content and border</dd>
+
+                        <dt>Border</dt>
+                        <dd>Visible line around the padding and content</dd>
+
+                        <dt>Margin</dt>
+                        <dd>Space outside the border separating elements</dd>
+                    </dl>
+                </aside>
+            </section>
+
+            <section class="box-sizing-demo">
+                <h2>box-sizing difference</h2>
+                <div class="bs-default">
+                    <p>Default (content-box): width excludes border/padding.</p>
+                </div>
+                <div class="bs-border-box">
+                    <p>With <code>box-sizing: border-box;</code> the width
+                        includes border/padding.</p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

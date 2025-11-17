@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Q4 — CSS Selectors Practice</title>
+        <link rel="stylesheet" href="q4.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Selectors Practice</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>Element selector</h2>
+                <p>This paragraph is targeted by an <code>element</code>
+                    selector.</p>
+            </section>
+
+            <section>
+                <h2>Class &amp; ID selectors</h2>
+                <p class="highlight">A paragraph selected by a
+                    <code>.class</code>.</p>
+                <p id="unique">A paragraph selected by an <code>#id</code>.</p>
+            </section>
+
+            <section>
+                <h2>Attribute selector</h2>
+                <a href="#" data-role="external">Link with
+                    data-role="external"</a>
+            </section>
+
+            <section>
+                <h2>Combinators</h2>
+                <div class="parent">
+                    <p>Parent &gt; child example:</p>
+                    <p class="child">Child paragraph (direct child)</p>
+                    <p class="child sibling">Another paragraph</p>
+                </div>
+
+                <p class="after">Paragraph</p>
+                <p class="adjacent">Adjacent sibling (+) example</p>
+
+                <div>
+                    <p>General sibling (~) demonstration follows this block:</p>
+                </div>
+                <div class="sibling-target">This element is a general sibling of
+                    the previous div.</div>
+            </section>
+        </main>
+
+        <footer>
+            <small>Selectors: element, class, ID, attribute, & combinators (>,
+                +, ~, descendant)</small>
+        </footer>
+    </body>
+</html>

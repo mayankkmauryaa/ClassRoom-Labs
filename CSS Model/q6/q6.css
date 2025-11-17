@@ -1,0 +1,91 @@
+/* q6.css - Transformations Showcase */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Roboto, Arial;
+    background: #f3f6fb;
+    color: #111;
+    padding: 1.25rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Arrange horizontally */
+.transform-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+/* Box style */
+.transform-item {
+    text-align: center;
+    width: 140px;
+}
+
+.box {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(20, 30, 60, 0.06);
+    transition: all 0.4s ease;
+    /* required transition for hover */
+    font-weight: 700;
+}
+
+/* Hover transformations */
+/* rotate */
+.transform-item.rotate .box:hover {
+    transform: rotate(12deg);
+}
+
+/* scale */
+.transform-item.scale .box:hover {
+    transform: scale(1.18);
+}
+
+/* translate */
+.transform-item.translate .box:hover {
+    transform: translateY(-16px) translateX(6px);
+}
+
+/* skew */
+.transform-item.skew .box:hover {
+    transform: skewX(-10deg) skewY(6deg);
+}
+
+/* labels */
+.transform-item figcaption {
+    margin-top: .6rem;
+    color: #555;
+    font-size: .95rem;
+}
+
+/* small screens */
+@media (max-width:600px) {
+    .transform-row {
+        gap: .8rem;
+    }
+
+    .transform-item {
+        width: 110px;
+    }
+
+    .box {
+        width: 110px;
+        height: 110px;
+    }
+}

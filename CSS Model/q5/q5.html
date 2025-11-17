@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Q5 — Advanced CSS Selectors</title>
+        <link rel="stylesheet" href="q5.css" />
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Advanced CSS Selectors Demo</h1>
+                <p>Attribute selectors, pseudo-classes, pseudo-elements and
+                    combinators.</p>
+            </header>
+
+            <section>
+                <form class="demo-form" action="#" aria-label="Sample form">
+                    <label>Username: <input type="text" name="username"
+                            placeholder="Type here" /></label>
+                    <label>Email: <input type="email" name="email" /></label>
+                    <label>Password: <input type="password" name="pw" /></label>
+                </form>
+            </section>
+
+            <section>
+                <h2>Links (attribute selectors)</h2>
+                <ul class="links">
+                    <li><a href="http://example.com">HTTP link</a></li>
+                    <li><a href="https://secure.example.com">Secure
+                            (https)</a></li>
+                    <li><a href="https://another.example.com/page">Secure
+                            page</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fancy List (nth-child and pseudo-elements)</h2>
+                <ol class="fancy">
+                    <li data-tag="one">First item</li>
+                    <li data-tag="two">Second item</li>
+                    <li data-tag="three">Third item</li>
+                    <li data-tag="four">Fourth item</li>
+                </ol>
+            </section>
+        </main>
+    </body>
+</html>

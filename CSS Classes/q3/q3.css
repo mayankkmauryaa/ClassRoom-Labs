@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background: #f4f7fb;
+    padding: 2rem;
+    color: #0b1320;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Grid with responsive behavior */
+.gallery {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Figure styling */
+figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+    margin: 0;
+    background: #fff;
+}
+
+/* Image fills figure */
+figure img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform .35s ease, filter .35s ease;
+}
+
+/* overlay using pseudo-element */
+figure::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background .35s ease;
+}
+
+/* caption */
+figcaption {
+    padding: .6rem;
+    font-size: .95rem;
+    text-align: center;
+    background: white;
+}
+
+/* hover effects: scale and darken overlay */
+figure:hover img {
+    transform: scale(1.1);
+}
+
+figure:hover::before {
+    background: rgba(0, 0, 0, 0.28);
+}
+
+/* rounded corners for modern look already set above */
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    figure img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    figure img {
+        height: 280px;
+    }
+}

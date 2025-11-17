@@ -1,0 +1,73 @@
+p {
+    margin: .4rem 0;
+    padding: .4rem;
+    color: #0b1320;
+}
+
+/* Class selector - .highlight */
+.highlight {
+    background: #fff7cc;
+    border-left: 4px solid #f59e0b;
+}
+
+/* ID selector - #unique */
+#unique {
+    background: #eef2ff;
+    border-left: 4px solid #3b82f6;
+}
+
+/* Attribute selector - selects elements with data-role="external" */
+a[data-role="external"] {
+    text-decoration: none;
+    color: #0b61ff;
+    padding: .2rem .35rem;
+    border-radius: 6px;
+}
+
+/* Descendant selector (any descendant) */
+.parent p {
+    background: #f8fafc;
+}
+
+/* Child combinator (>) - direct child of .parent */
+.parent>.child {
+    border-left: 3px solid #93c5fd;
+    padding-left: .6rem;
+}
+
+/* Adjacent sibling (+) */
+.after+.adjacent {
+    border-top: 1px dashed #cbd5e1;
+    padding-top: .35rem;
+}
+
+/* General sibling (~) */
+div~.sibling-target {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: .5rem;
+    margin-top: .4rem;
+}
+
+/* Comments: each rule demonstrates a selector type as requested */
+
+/* Layout */
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 0;
+    padding: 1.5rem;
+    background: #fbfdff;
+    color: #0b1320;
+}
+
+header,
+footer {
+    text-align: center;
+    padding: .5rem 0;
+}
+
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1rem;
+}

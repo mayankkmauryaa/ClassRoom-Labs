@@ -1,0 +1,100 @@
+/* q5.css - Pricing table */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.pricing h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.plans {
+    display: flex;
+    /* equal columns via flex */
+    gap: 1rem;
+    align-items: stretch;
+    /* equal height requirement */
+}
+
+/* Each plan is a flex column to keep footer/button at bottom */
+.plan {
+    flex: 1;
+    padding: 1.5rem;
+    border: 2px solid #e6eef8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 250ms ease, background-color 250ms ease;
+    background: #fff;
+}
+
+/* Hover effect slightly enlarges and changes background (requirement) */
+.plan:hover {
+    transform: scale(1.03);
+    background: #f7fafc;
+}
+
+/* Smooth transitions: defined above using transition property */
+
+/* Most popular plan highlighted with different border/style */
+.plan.popular {
+    border: 3px solid #1f8a70;
+    background: linear-gradient(180deg, #f7fff7, #ffffff);
+    box-shadow: 0 12px 30px rgba(31, 138, 112, 0.08);
+}
+
+/* content styling */
+.plan h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.plan ul {
+    list-style: none;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.plan .price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+.plan .price span {
+    font-size: 0.8rem;
+    color: #666;
+    margin-left: 6px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    background: #1f8a70;
+    color: #fff;
+    margin-top: 1rem;
+    transition: background-color 200ms ease, transform 200ms ease;
+}
+
+/* Ensure equal height even with different content lengths - flex + align-items:stretch does this */
+@media (max-width:800px) {
+    .plans {
+        flex-direction: column;
+    }
+
+    .plan {
+        width: 100%;
+    }
+}

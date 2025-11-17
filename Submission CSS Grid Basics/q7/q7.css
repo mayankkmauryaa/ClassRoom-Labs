@@ -1,0 +1,67 @@
+/* q7.css - Centered contact form */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f6fb;
+    font-family: system-ui, Arial;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 520px;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 14px 40px rgba(16, 24, 40, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    /* spacing between fields */
+}
+
+/* inputs styling: padding, border-radius, subtle shadows (requirement) */
+.contact-form input,
+.contact-form textarea {
+    padding: 0.65rem;
+    border-radius: 8px;
+    border: 1px solid #dfe8f4;
+    box-shadow: 0 4px 12px rgba(10, 20, 40, 0.03);
+    font-size: 1rem;
+}
+
+/* change border color on focus (requirement) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #1f8a70;
+    box-shadow: 0 6px 18px rgba(31, 138, 112, 0.08);
+}
+
+/* labels */
+.contact-form label {
+    font-weight: 600;
+    color: #223344;
+    font-size: 0.9rem;
+}
+
+/* button */
+.contact-form button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: none;
+    background: #1f8a70;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* center vertically & horizontally handled by body flex above */

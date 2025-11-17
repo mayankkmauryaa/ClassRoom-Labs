@@ -1,0 +1,93 @@
+/* q3.css - Gradient Background Webpage */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Arial;
+    color: #fff;
+}
+
+/* Fixed header and footer */
+.site-header,
+.site-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 20, 0.85);
+    padding: 1rem;
+    z-index: 20;
+    text-align: center;
+}
+
+.site-header {
+    top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.site-footer {
+    bottom: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Ensure main content sits between header and footer */
+main {
+    padding-top: 84px;
+    padding-bottom: 72px;
+}
+
+/* Linear gradient section */
+.linear {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, #0f2027 0%, #203a43 40%, #2c5364 100%);
+}
+
+/* Radial gradient section with fixed background to create parallax-like effect */
+.radial {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02) 20%, rgba(20, 40, 80, 0.6) 50%, rgba(10, 10, 20, 0.95)),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.2) 40%);
+    background-attachment: fixed;
+    /* parallax-like */
+}
+
+/* Headings and text contrast */
+.linear h2,
+.radial h2 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.linear p,
+.radial p {
+    max-width: 700px;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.6;
+}
+
+/* Small screens */
+@media (max-width:600px) {
+
+    .linear,
+    .radial {
+        padding: 1.5rem;
+    }
+
+    .linear h2,
+    .radial h2 {
+        font-size: 1.5rem;
+    }
+}

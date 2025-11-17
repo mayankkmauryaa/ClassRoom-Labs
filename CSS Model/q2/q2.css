@@ -1,0 +1,97 @@
+/* q2.css - Height & Width Practice */
+
+/* Base layout and reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Arial;
+    margin: 0;
+    background: #f7f8fb;
+    color: #222;
+}
+
+header {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.muted {
+    color: #666;
+}
+
+/* Center container uses flexbox to center both horizontally and vertically */
+.centered {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Generic box style */
+.box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+    text-align: center;
+}
+
+/* Specific sizes using different units */
+.px-box {
+    width: 300px;
+    /* px */
+    height: 150px;
+    /* px */
+    background: #fffaf0;
+}
+
+.percent-box {
+    width: 60%;
+    /* percentage of available container */
+    max-width: 480px;
+    /* max-width */
+    min-height: 120px;
+    background: #f0fff4;
+    overflow: auto;
+    /* will show scrollbars if content overflows */
+    padding: 1rem;
+}
+
+.vh-box {
+    width: 18em;
+    /* em for relative width */
+    height: 35vh;
+    /* viewport-height */
+    background: #f0f5ff;
+    min-height: 120px;
+}
+
+/* overflow demo styling inside percent-box */
+.overflow-demo {
+    border: 1px dashed #cbd5e1;
+    padding: .5rem;
+    margin-top: .5rem;
+    max-height: 4.5rem;
+    overflow: auto;
+}
+
+/* Responsiveness */
+@media (max-width:820px) {
+    .percent-box {
+        width: 90%;
+    }
+
+    .px-box,
+    .vh-box {
+        width: 90%;
+    }
+}

@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial;
+    background: linear-gradient(180deg, #f7fbff, #eef5ff);
+    color: #0b1320;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.site-header {
+    padding: 1rem;
+    background: linear-gradient(90deg, #fff, #f8fafc);
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+    text-align: center;
+}
+
+/* Center area */
+.center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Card */
+.card {
+    width: 520px;
+    padding: 1.25rem;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 14px 36px rgba(16, 24, 40, 0.08);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+/* Avatar */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Form layout using flexbox column */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    width: 100%;
+}
+
+/* Inputs consistent style */
+input[type="text"],
+input[type="email"] {
+    padding: .55rem .65rem;
+    border-radius: 8px;
+    border: 1px solid #e6eefb;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: .6rem;
+    margin-top: .5rem;
+}
+
+.btn {
+    padding: .55rem .9rem;
+    border-radius: 8px;
+    border: none;
+    background: #0b61ff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    color: #0b1320;
+}
+
+/* Hover & focus effects using pseudo-classes */
+input:focus {
+    outline: none;
+    box-shadow: 0 8px 18px rgba(11, 97, 255, 0.12);
+    border-color: #0b61ff;
+}
+
+.btn:focus {
+    outline: 3px solid rgba(11, 97, 255, .12);
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: .8rem;
+    font-size: .9rem;
+    color: #475569;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .card {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .avatar {
+        margin-bottom: .4rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
