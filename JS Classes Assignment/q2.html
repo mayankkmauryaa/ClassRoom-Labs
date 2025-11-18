@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Q2 - Student Form Validator</title>
+    <style>
+    .error { color: red; font-size: 0.9em; }
+    .valid { border: 2px solid green; }
+    .invalid { border: 2px solid red; }
+    input { display:block; margin-bottom:8px; padding:6px; width:300px; }
+  </style>
+  </head>
+  <body>
+    <h2>Q2 - Student Registration</h2>
+    <form id="studentForm" novalidate>
+      <label>Name<input id="name" type="text" placeholder="Full name"></label>
+      <div id="nameErr" class="error"></div>
+
+      <label>Email<input id="email" type="email"
+          placeholder="example@domain.com"></label>
+      <div id="emailErr" class="error"></div>
+
+      <label>Phone<input id="phone" type="text" placeholder="10 digits"></label>
+      <div id="phoneErr" class="error"></div>
+
+      <label>Password<input id="password" type="password"
+          placeholder="Password"></label>
+      <div id="passwordErr" class="error"></div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <script>
+    // Helper: set field UI based on validity
+    const setValidityUI = (el, messageEl, valid, message='') => {
+      el.classList.remove('valid','invalid');
+      if(valid){
+        el.classList.add('valid');
+        messageEl.textContent = '';
+      } else {
+        el.classList.add('invalid');
+        messageEl.textContent = message;
+      }
+    };
+
+    // Regex patterns
+    const nameRe = /^[A-Za-z\s]+$/;
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRe = /^\d{10}$/;
+    const passwordRe = /^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).+$/; // at least 1 uppercase, 1 number, 1 special
+
+    const form = document.getElementById('studentForm');
+
+    // Validate individual fields on blur (DOM-based)
+    ['name','email','phone','password'].forEach(id=>{
+      const field = document.getElementById(id);
+      field.addEventListener('blur', () => validateField(id));
+    });
+
+    const validateField = (id) => {
+      const field = document.getElementById(id);
+      const msg = document.getElementById(id + 'Err');
+      const val = field.value.trim();
+
+      if(id === 'name'){
+        const ok = nameRe.test(val);
+        setValidityUI(field, msg, ok, ok ? '' : 'Name must contain only alphabets and spaces.');
+        return ok;
+      }
+      if(id === 'email'){
+        const ok = emailRe.test(val);
+        setValidityUI(field, msg, ok, ok ? '' : 'Enter a valid email address.');
+        return ok;
+      }
+      if(id === 'phone'){
+        const ok = phoneRe.test(val);
+        setValidityUI(field, msg, ok, ok ? '' : 'Phone must be exactly 10 digits.');
+        return ok;
+      }
+      if(id === 'password'){
+        const ok = passwordRe.test(val);
+        setValidityUI(field, msg, ok, ok ? '' : 'Password must have 1 uppercase, 1 number and 1 special character.');
+        return ok;
+      }
+    };
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // Validate all fields and show errors if any
+      const ids = ['name','email','phone','password'];
+      const results = ids.map(validateField);
+      if(results.every(Boolean)){
+        alert('Registration successful!');
+        form.reset();
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          el.classList.remove('valid');
+        });
+      } else {
+        alert('Please fix the highlighted errors.');
+      }
+    });
+  </script>
+  </body>
+</html>

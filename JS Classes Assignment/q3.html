@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Q3 - Library Management System</title>
+    <style>
+    .book { margin-bottom:6px; }
+    input { padding:6px; }
+  </style>
+  </head>
+  <body>
+    <h2>Q3 - Library Management System</h2>
+    <div id="available"></div>
+
+    <h3>Issue a book by ISBN</h3>
+    <input id="searchIsbn" placeholder="Enter ISBN">
+    <button id="issueBtn">Issue</button>
+    <div id="issueMsg"></div>
+
+    <h3>Return a book by ISBN</h3>
+    <input id="returnIsbn" placeholder="Enter ISBN">
+    <button id="returnBtn">Return</button>
+    <div id="returnMsg"></div>
+
+    <script>
+    // Book class with issue/return methods
+    class Book {
+      constructor(title, author, ISBN, isIssued=false){
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
+        this.isIssued = isIssued;
+      }
+
+      issueBook = () => { if(!this.isIssued) this.isIssued = true; return this.isIssued; }
+      returnBook = () => { if(this.isIssued) this.isIssued = false; return this.isIssued; }
+      display = () => `${this.title} by ${this.author} (ISBN: ${this.ISBN}) - ${this.isIssued ? 'Issued' : 'Available'}`;
+    }
+
+    // Create array of books
+    const library = [
+      new Book('The Alchemist','Paulo Coelho','ISBN001'),
+      new Book('Clean Code','Robert C. Martin','ISBN002'),
+      new Book('You Don\'t Know JS','Kyle Simpson','ISBN003'),
+      new Book('Atomic Habits','James Clear','ISBN004', true),
+      new Book('Design Patterns','Erich Gamma','ISBN005')
+    ];
+
+    // Display available books (not issued)
+    const refreshAvailable = () => {
+      const out = document.getElementById('available');
+      const avail = library.filter(b => !b.isIssued);
+      out.innerHTML = `<h3>Available Books (${avail.length})</h3><div>${avail.map(b=>`<div class="book">${b.display()}</div>`).join('')}</div>`;
+    };
+    refreshAvailable();
+
+    // Issue book by searching ISBN
+    document.getElementById('issueBtn').addEventListener('click', () => {
+      const isbn = document.getElementById('searchIsbn').value.trim();
+      const msg = document.getElementById('issueMsg');
+      const book = library.find(b => b.ISBN === isbn);
+      if(!book){
+        msg.textContent = 'Book not found.';
+        msg.style.color = 'red';
+      } else if(book.isIssued){
+        msg.textContent = 'Book is already issued.';
+        msg.style.color = 'orange';
+      } else {
+        book.issueBook();
+        msg.textContent = `Issued: ${book.title}`;
+        msg.style.color = 'green';
+        refreshAvailable();
+      }
+    });
+
+    // Return book
+    document.getElementById('returnBtn').addEventListener('click', () => {
+      const isbn = document.getElementById('returnIsbn').value.trim();
+      const msg = document.getElementById('returnMsg');
+      const book = library.find(b => b.ISBN === isbn);
+      if(!book){
+        msg.textContent = 'Book not found.';
+        msg.style.color = 'red';
+      } else if(!book.isIssued){
+        msg.textContent = 'Book was not issued.';
+        msg.style.color = 'orange';
+      } else {
+        book.returnBook();
+        msg.textContent = `Returned: ${book.title}`;
+        msg.style.color = 'green';
+        refreshAvailable();
+      }
+    });
+  </script>
+  </body>
+</html>

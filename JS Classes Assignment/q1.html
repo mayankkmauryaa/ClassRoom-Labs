@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Q1 - E-Commerce Product Manager</title>
+  </head>
+  <body>
+    <h2>Q1 - E-Commerce Product Manager (Console Output + Demo)</h2>
+    <div id="products"></div>
+    <script>
+    // Product class with properties and methods
+    class Product {
+      constructor(id, name, price, category){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+      }
+
+      // Apply a percentage discount (e.g., 10)
+      applyDiscount = (percent) => {
+        this.price = +(this.price * (1 - percent / 100)).toFixed(2);
+      }
+
+      // Display product details in a formatted string
+      display = () => `ID: ${this.id} | ${this.name} (${this.category}) - ₹${this.price}`;
+
+    }
+
+    // Create multiple product objects and store in array
+    const products = [
+      new Product(1, 'Laptop Pro', 120000, 'Electronics'),
+      new Product(2, 'Bluetooth Headset', 1500, 'Electronics'),
+      new Product(3, 'Office Chair', 8500, 'Furniture'),
+      new Product(4, 'Coffee Mug', 350, 'Home'),
+      new Product(5, 'Smartphone', 45000, 'Electronics')
+    ];
+
+    // Apply a 10% discount to product with id 2 as demo
+    products.find(p => p.id === 2)?.applyDiscount(10);
+
+    // Display all products in the page
+    const container = document.getElementById('products');
+    container.innerHTML = `<pre>${products.map(p => p.display()).join('\n')}</pre>`;
+
+    // Display products with price > 1000 in the console using filter
+    console.log('Products with price > 1000:');
+    console.table(products.filter(p => p.price > 1000).map(p => ({id:p.id, name:p.name, price:p.price, category:p.category})));
+  </script>
+  </body>
+</html>
