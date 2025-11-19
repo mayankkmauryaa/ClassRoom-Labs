@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Q5 - Movie Ticket Booking</title>
+        <style>
+    .error { color:red; }
+    .ticket { border:1px solid #ccc; padding:10px; margin-top:10px; width:320px; }
+    input { display:block; margin-bottom:6px; padding:6px; width:300px; }
+  </style>
+    </head>
+    <body>
+        <h2>Q5 - Movie Ticket Booking</h2>
+        <form id="bookingForm" novalidate>
+            <input id="name" placeholder="Name">
+            <div id="nameErr" class="error"></div>
+
+            <input id="email" placeholder="Email">
+            <div id="emailErr" class="error"></div>
+
+            <input id="seats" placeholder="Number of seats (1-10)">
+            <div id="seatsErr" class="error"></div>
+
+            <button type="submit">Book</button>
+        </form>
+
+        <div id="ticketArea"></div>
+
+        <script>
+    const nameRe = /^[A-Za-z\s]+$/;
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const setError = (el, msg) => { document.getElementById(el+'Err').textContent = msg; };
+    const clearErrors = () => ['name','email','seats'].forEach(id => setError(id, ''));
+
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrors();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const seatsStr = document.getElementById('seats').value.trim();
+
+      let ok = true;
+      if(!nameRe.test(name)){ setError('name', 'Name must contain only alphabets.'); ok = false; }
+      if(!emailRe.test(email)){ setError('email', 'Enter a valid email.'); ok = false; }
+      if(!/^\d+$/.test(seatsStr)){ setError('seats', 'Seats must be a number between 1 and 10.'); ok = false; }
+      else {
+        const seats = Number(seatsStr);
+        if(seats < 1 || seats > 10){ setError('seats', 'Seats must be 1 to 10.'); ok = false; }
+      }
+
+      if(!ok) return;
+
+      // Build booking object and display ticket
+      const booking = { name, email, seats: Number(seatsStr) };
+      const ticketArea = document.getElementById('ticketArea');
+      ticketArea.innerHTML = `<div class="ticket">
+        <h3>Booking Confirmed</h3>
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> ${booking.email}</p>
+        <p><strong>Seats:</strong> ${booking.seats}</p>
+      </div>`;
+      // For demo clear form
+      e.target.reset();
+    });
+  </script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Q4 - Custom Form Builder</title>
+        <style>
+    .field { margin-bottom:8px; }
+    input, select, textarea { width:300px; padding:6px; }
+  </style>
+    </head>
+    <body>
+        <h2>Q4 - Custom Form Builder</h2>
+        <div id="formContainer"></div>
+        <pre id="formDataOut"></pre>
+
+        <script>
+    // FormBuilder class that generates a form from an array of field objects
+    class FormBuilder {
+      constructor(fields = [], targetId='formContainer'){
+        this.fields = fields;
+        this.target = document.getElementById(targetId);
+        this.form = document.createElement('form');
+        this.form.id = 'dynamicForm';
+        this.target.appendChild(this.form);
+        this._render();
+      }
+
+      // Render form controls using innerHTML
+      _render = () => {
+        // build controls html
+        this.form.innerHTML = this.fields.map(f => {
+          const label = `<label>${f.label}</label>`;
+          if(f.type === 'textarea') {
+            return `<div class="field">${label}<br><textarea name="${f.name||f.label}"></textarea></div>`;
+          }
+          if(f.type === 'select') {
+            const options = (f.options||[]).map(o => `<option value="${o}">${o}</option>`).join('');
+            return `<div class="field">${label}<br><select name="${f.name||f.label}">${options}</select></div>`;
+          }
+          return `<div class="field">${label}<br><input type="${f.type}" name="${f.name||f.label}" placeholder="${f.placeholder||''}"></div>`;
+        }).join('') + `<button type="submit">Submit</button>`;
+        // handle submit
+        this.form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const data = this.getFormData();
+          document.getElementById('formDataOut').textContent = JSON.stringify(data, null, 2);
+        });
+      }
+
+      // Returns object with form values when submit clicked
+      getFormData = () => {
+        const formData = new FormData(this.form);
+        const obj = {};
+        for(const [key, value] of formData.entries()){
+          // if name repeats (like checkboxes), accumulate into array
+          if(obj[key]) {
+            if(Array.isArray(obj[key])) obj[key].push(value);
+            else obj[key] = [obj[key], value];
+          } else {
+            obj[key] = value;
+          }
+        }
+        return obj;
+      }
+    }
+
+    // Example fields array
+    const fields = [
+      {type:'text', label:'Username', name:'username', placeholder:'Enter username'},
+      {type:'email', label:'Email', name:'email'},
+      {type:'select', label:'Role', name:'role', options:['Student','Teacher','Admin']},
+      {type:'textarea', label:'Bio', name:'bio', placeholder:'Tell us about yourself'}
+    ];
+
+    // Instantiate the dynamic form
+    const builder = new FormBuilder(fields);
+  </script>
+    </body>
+</html>

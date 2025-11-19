@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Q10 - Resume Form + Data Object Builder</title>
+        <style>
+    input, textarea { display:block; padding:6px; margin-bottom:6px; width:320px; }
+    .error { color:red; font-size:0.9em; }
+    pre { background:#f5f5f5; padding:8px; }
+  </style>
+    </head>
+    <body>
+        <h2>Q10 - Resume Builder</h2>
+        <form id="resumeForm" novalidate>
+            <input id="name" placeholder="Name">
+            <div id="nameErr" class="error"></div>
+
+            <input id="email" placeholder="Email">
+            <div id="emailErr" class="error"></div>
+
+            <textarea id="skills"
+                placeholder="Skills (comma separated)"></textarea>
+
+            <input id="github" placeholder="GitHub URL (https://...)">
+            <div id="githubErr" class="error"></div>
+
+            <input id="linkedin" placeholder="LinkedIn URL (https://...)">
+            <div id="linkedinErr" class="error"></div>
+
+            <button type="submit">Create Resume JSON</button>
+        </form>
+
+        <h3>Resume Data</h3>
+        <pre id="resumeOut"></pre>
+
+        <script>
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const urlStarts = /^https:\/\/.+/i;
+
+    const setErr = (id, msg) => document.getElementById(id+'Err').textContent = msg;
+    const clearErrs = () => ['name','email','github','linkedin'].forEach(id => setErr(id, ''));
+
+    document.getElementById('resumeForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrs();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const skillsRaw = document.getElementById('skills').value.trim();
+      const github = document.getElementById('github').value.trim();
+      const linkedin = document.getElementById('linkedin').value.trim();
+
+      let ok = true;
+      if(!name) { setErr('name','Name is required.'); ok = false; }
+      if(!emailRe.test(email)) { setErr('email','Enter a valid email.'); ok = false; }
+      if(github && !urlStarts.test(github)) { setErr('github','GitHub URL must start with https://'); ok = false; }
+      if(linkedin && !urlStarts.test(linkedin)) { setErr('linkedin','LinkedIn URL must start with https://'); ok = false; }
+
+      if(!ok) return;
+
+      const resume = {
+        name,
+        email,
+        skills: skillsRaw ? skillsRaw.split(',').map(s => s.trim()).filter(Boolean) : [],
+        github: github || null,
+        linkedin: linkedin || null
+      };
+
+      document.getElementById('resumeOut').textContent = JSON.stringify(resume, null, 2);
+      // optional: reset form
+      // e.target.reset();
+    });
+  </script>
+    </body>
+</html>

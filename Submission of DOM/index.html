@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Assignment 7 - Solutions</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <h1>Assignment 7 — Solutions (Q1 → Q9)</h1>
+
+        <!-- Q1 -->
+        <section id="q1">
+            <h2>1. Dynamic Product List Manager</h2>
+            <div class="row">
+                <input id="productInput" placeholder="Add product name" />
+                <button id="addProductBtn">Add Product</button>
+            </div>
+            <ul id="productList"></ul>
+            <small>Click Edit to modify inline. Click outside to
+                auto-save.</small>
+        </section>
+
+        <!-- Q2 -->
+        <section id="q2">
+            <h2>2. Live Character Counter</h2>
+            <textarea id="charArea" rows="4" cols="40"
+                placeholder="Type (max 100)"></textarea>
+            <div class="row">
+                <span id="charCounter">100</span>
+                <button id="resetChars">Reset</button>
+            </div>
+        </section>
+
+        <!-- Q3 -->
+        <section id="q3">
+            <h2>3. Multi-Step Form</h2>
+            <div id="multiStep">
+                <div class="step" data-step="1">
+                    <label>Name: <input id="ms-name" /></label>
+                </div>
+                <div class="step hidden" data-step="2">
+                    <label>Email: <input id="ms-email" /></label>
+                </div>
+                <div class="step hidden" data-step="3">
+                    <label>Password: <input id="ms-pass"
+                            type="password" /></label>
+                </div>
+                <div class="row" style="margin-top:8px;">
+                    <button id="ms-back">Back</button>
+                    <button id="ms-next">Next</button>
+                </div>
+            </div>
+            <div id="ms-summary" class="hidden"></div>
+        </section>
+
+        <!-- Q4 -->
+        <section id="q4">
+            <h2>4. Theme Switcher</h2>
+            <div class="row">
+                <button data-theme-button="light">Light</button>
+                <button data-theme-button="dark">Dark</button>
+                <button data-theme-button="blue">Blue</button>
+            </div>
+            <small>Current data-theme on body will be updated.</small>
+        </section>
+
+        <!-- Q5 -->
+        <section id="q5">
+            <h2>5. Image Gallery with Modal Preview</h2>
+            <div class="gallery" id="imageGallery">
+                <!-- placeholder images -->
+                <img src="https://picsum.photos/id/1015/400/300" alt="img1"
+                    data-large="https://picsum.photos/id/1015/800/600" />
+                <img src="https://picsum.photos/id/1016/400/300" alt="img2"
+                    data-large="https://picsum.photos/id/1016/800/600" />
+                <img src="https://picsum.photos/id/1018/400/300" alt="img3"
+                    data-large="https://picsum.photos/id/1018/800/600" />
+                <img src="https://picsum.photos/id/1020/400/300" alt="img4"
+                    data-large="https://picsum.photos/id/1020/800/600" />
+                <img src="https://picsum.photos/id/1024/400/300" alt="img5"
+                    data-large="https://picsum.photos/id/1024/800/600" />
+                <img src="https://picsum.photos/id/1025/400/300" alt="img6"
+                    data-large="https://picsum.photos/id/1025/800/600" />
+            </div>
+            <div id="imgModal" class="modal hidden" tabindex="-1">
+                <div class="inner" id="modalInner">
+                    <img id="modalImg" src alt="preview"
+                        style="max-width:90vw; max-height:80vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Q6 -->
+        <section id="q6">
+            <h2>6. Real-Time Table Filter</h2>
+            <input id="studentSearch"
+                placeholder="Search students by name, branch, CGPA" />
+            <div id="noResults" class="hidden">No results found</div>
+            <table id="studentsTable">
+                <thead><tr><th>Name</th><th>Branch</th><th>CGPA</th></tr></thead>
+                <tbody>
+                    <tr><td>Alice</td><td>CS</td><td>9.1</td></tr>
+                    <tr><td>Bob</td><td>EE</td><td>8.3</td></tr>
+                    <tr><td>Charlie</td><td>ME</td><td>7.9</td></tr>
+                    <tr><td>Diana</td><td>CS</td><td>8.7</td></tr>
+                    <tr><td>Eva</td><td>CE</td><td>9.0</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Q7 -->
+        <section id="q7">
+            <h2>7. Mouse Path & Coordinates Logger</h2>
+            <div class="box" id="mouseBox"></div>
+            <div>clientX: <span id="mx">-</span>, clientY: <span
+                    id="my">-</span></div>
+        </section>
+
+        <!-- Q8 -->
+        <section id="q8">
+            <h2>8. Custom Dropdown (no &lt;select&gt;)</h2>
+            <div class="dropdown" id="customDropdown">
+                <button id="ddBtn">Select option</button>
+                <div class="options hidden" id="ddOptions" role="listbox">
+                    <div class="option" data-value="o1">Option 1</div>
+                    <div class="option" data-value="o2">Option 2</div>
+                    <div class="option" data-value="o3">Option 3</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q9 -->
+        <section id="q9">
+            <h2>9. Form Submit Blocker with Live Errors</h2>
+            <form id="signupForm" novalidate>
+                <div>
+                    <label>Name: <input id="f-name" /></label>
+                    <div class="error" id="err-name"></div>
+                </div>
+                <div>
+                    <label>Email: <input id="f-email" /></label>
+                    <div class="error" id="err-email"></div>
+                </div>
+                <div>
+                    <label>Password: <input id="f-pass"
+                            type="password" /></label>
+                    <div class="error" id="err-pass"></div>
+                </div>
+                <div style="margin-top:8px;">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <div id="formMessage"></div>
+        </section>
+
+        <!-- Include each question's JS file -->
+        <script src="./q1.js"></script>
+        <script src="./q2.js"></script>
+        <script src="./q3.js"></script>
+        <script src="./q4.js"></script>
+        <script src="./q5.js"></script>
+        <script src="./q6.js"></script>
+        <script src="./q7.js"></script>
+        <script src="./q8.js"></script>
+        <script src="./q9.js"></script>
+    </body>
+</html>

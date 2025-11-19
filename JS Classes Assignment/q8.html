@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Q8 - Dynamic Object Updater</title>
+        <style>
+    input { display:block; margin-bottom:6px; padding:6px; width:300px; }
+    pre { background:#f5f5f5; padding:8px; }
+  </style>
+    </head>
+    <body>
+        <h2>Q8 - Edit User Object</h2>
+        <form id="userForm">
+            <input id="name" name="name" placeholder="Name">
+            <input id="email" name="email" placeholder="Email">
+            <input id="age" name="age" placeholder="Age">
+            <button type="submit">Update</button>
+        </form>
+
+        <h3>Current User Object</h3>
+        <pre id="userOut"></pre>
+
+        <script>
+    // Initial user object
+    const user = { name: "Akash", email: "akash@mail.com", age: 21 };
+
+    // Render user object into DOM
+    const render = () => {
+      document.getElementById('userOut').textContent = JSON.stringify(user, null, 2);
+      // also populate form
+      document.getElementById('name').value = user.name;
+      document.getElementById('email').value = user.email;
+      document.getElementById('age').value = user.age;
+    };
+
+    render();
+
+    // On submit update the user object in real time and display it
+    document.getElementById('userForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      for(const [k,v] of fd.entries()){
+        // convert age to number if field is age
+        user[k] = (k === 'age') ? Number(v) : v;
+      }
+      render();
+    });
+
+    // Also update object in real-time on input (optional)
+    document.getElementById('userForm').addEventListener('input', (e) => {
+      const name = e.target.name;
+      if(!name) return;
+      const val = e.target.value;
+      user[name] = name === 'age' ? Number(val || 0) : val;
+      render();
+    });
+  </script>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Q7 - Login Form Validation</title>
+        <style>
+    .error { color:red; font-size:0.9em; }
+    input { display:block; margin-bottom:6px; padding:6px; width:300px; }
+  </style>
+    </head>
+    <body>
+        <h2>Q7 - Login</h2>
+        <form id="loginForm" novalidate>
+            <input id="username" placeholder="Username">
+            <div id="usernameErr" class="error"></div>
+
+            <input id="password" type="password" placeholder="Password">
+            <div id="passwordErr" class="error"></div>
+
+            <button type="submit">Login</button>
+        </form>
+        <div id="result"></div>
+
+        <script>
+    const usernameMin = 5;
+    const passwordRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/; // min 8, lowercase, uppercase, number, special
+
+    const show = (el, msg) => document.getElementById(el).textContent = msg;
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      show('usernameErr',''); show('passwordErr',''); document.getElementById('result').textContent='';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      let ok = true;
+      if(username.length < usernameMin){
+        show('usernameErr', `Username must be at least ${usernameMin} characters.`);
+        ok = false;
+      }
+      if(!passwordRe.test(password)){
+        show('passwordErr', 'Password must be 8+ chars with number, uppercase, lowercase and special char.');
+        ok = false;
+      }
+
+      if(ok){
+        document.getElementById('result').textContent = 'Login successful!';
+        document.getElementById('result').style.color = 'green';
+      } else {
+        document.getElementById('result').textContent = 'Fix errors to login.';
+        document.getElementById('result').style.color = 'red';
+      }
+    });
+  </script>
+    </body>
+</html>
