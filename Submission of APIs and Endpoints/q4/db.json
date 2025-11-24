@@ -1,0 +1,68 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Maya"
+        },
+        {
+            "id": 2,
+            "name": "Karan"
+        },
+        {
+            "id": 3,
+            "name": "Nina"
+        },
+        {
+            "id": 4,
+            "name": "Arjun"
+        },
+        {
+            "id": 5,
+            "name": "Sonal"
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "amount": 199.99
+        },
+        {
+            "id": 2,
+            "amount": 49.99
+        },
+        {
+            "id": 3,
+            "amount": 299.99
+        },
+        {
+            "id": 4,
+            "amount": 9.99
+        },
+        {
+            "id": 5,
+            "amount": 59.99
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Camera"
+        },
+        {
+            "id": 2,
+            "name": "Tripod"
+        },
+        {
+            "id": 3,
+            "name": "Lens"
+        },
+        {
+            "id": 4,
+            "name": "Bag"
+        },
+        {
+            "id": 5,
+            "name": "SD Card"
+        }
+    ]
+}

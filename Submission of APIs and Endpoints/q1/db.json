@@ -1,0 +1,34 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Wireless Headphones",
+            "price": 79.99,
+            "image": "https://via.placeholder.com/100?text=Headphones"
+        },
+        {
+            "id": 2,
+            "name": "Gaming Mouse",
+            "price": 49.5,
+            "image": "https://via.placeholder.com/100?text=Mouse"
+        },
+        {
+            "id": 3,
+            "name": "Mechanical Keyboard",
+            "price": 120.0,
+            "image": "https://via.placeholder.com/100?text=Keyboard"
+        },
+        {
+            "id": 4,
+            "name": "USB-C Charger 65W",
+            "price": 29.99,
+            "image": "https://via.placeholder.com/100?text=Charger"
+        },
+        {
+            "id": 5,
+            "name": "27-inch Monitor",
+            "price": 299.99,
+            "image": "https://via.placeholder.com/100?text=Monitor"
+        }
+    ]
+}

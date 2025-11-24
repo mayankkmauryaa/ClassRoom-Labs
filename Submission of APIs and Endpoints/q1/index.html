@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Q1 — Live Product Search</title>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <style>
+    body{font-family:Arial;margin:20px}
+    .search-box{width:100%;max-width:480px;padding:8px;font-size:16px}
+    .loading{display:none;margin:10px 0}
+    .results{margin-top:10px}
+    .product{display:flex;align-items:center;padding:8px;border-bottom:1px solid #eee}
+    .product img{width:60px;height:60px;object-fit:cover;margin-right:12px}
+    .no{color:#999;padding:8px}
+  </style>
+    </head>
+    <body>
+        <h2>Live Product Search</h2>
+        <input id="search" class="search-box"
+            placeholder="Type product name..." />
+        <div class="loading" id="loading">Loading...</div>
+        <div class="results" id="results"></div>
+
+        <script>
+$(function(){
+  const API = 'http://localhost:3001/products';
+  let lastRequest = null;
+  $('#search').on('input', function(){
+    const q = $(this).val().trim();
+    // Show loading
+    $('#results').empty();
+    $('#loading').show();
+
+    // Cancel previous jqXHR if still running
+    if (lastRequest && lastRequest.readyState !== 4) {
+      lastRequest.abort();
+    }
+
+    // Build URL: use ?q= for JSON Server full-text search
+    const url = API + (q ? '?q=' + encodeURIComponent(q) : '');
+
+    lastRequest = $.ajax({
+      url,
+      method: 'GET',
+      success(data){
+        $('#loading').hide();
+        if (!data || data.length === 0) {
+          $('#results').html('<div class="no">No products found</div>');
+          return;
+        }
+        const nodes = data.map(p => `
+          <div class="product">
+            <img src="${p.image}" alt="${p.name}" />
+            <div>
+              <div><strong>${p.name}</strong></div>
+              <div>₹${p.price}</div>
+            </div>
+          </div>
+        `).join('');
+        $('#results').html(nodes);
+      },
+      error(xhr, status){
+        if (status === 'abort') return;
+        $('#loading').hide();
+        $('#results').html('<div class="no">Error loading results</div>');
+      }
+    });
+  });
+
+  // trigger load of all products on open
+  $('#search').trigger('input');
+});
+</script>
+    </body>
+</html>

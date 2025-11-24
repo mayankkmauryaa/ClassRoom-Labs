@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Q6 — User Registration</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+    body{font-family:Arial;margin:20px;max-width:560px}
+    label{display:block;margin:8px 0}
+    input{padding:8px;width:100%;box-sizing:border-box}
+    button{padding:8px 12px;margin-top:8px}
+    .msg{margin-top:10px}
+    .error{color:#b00020}
+    .success{color:#0a7f00}
+  </style>
+  </head>
+  <body>
+    <h2>Register</h2>
+    <form id="form">
+      <label>Name
+        <input type="text" id="name" required />
+      </label>
+      <label>Email
+        <input type="email" id="email" required />
+      </label>
+      <button type="submit">Register</button>
+    </form>
+    <div id="msg" class="msg"></div>
+
+    <script>
+const API = 'http://localhost:3006/users';
+const form = document.getElementById('form');
+const msg = document.getElementById('msg');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  msg.textContent = '';
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+
+  if (!name || !email) { msg.innerHTML = '<span class="error">Please fill fields</span>'; return; }
+
+  // Check duplicate
+  axios.get(API + '?email=' + encodeURIComponent(email))
+    .then(res => {
+      if (res.data && res.data.length > 0) {
+        msg.innerHTML = '<span class="error">Email already registered.</span>';
+      } else {
+        // register
+        return axios.post(API, {name, email});
+      }
+    })
+    .then(postResp => {
+      if (postResp && postResp.status >= 200 && postResp.status < 300) {
+        msg.innerHTML = '<span class="success">Registration successful.</span>';
+        form.reset();
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      msg.innerHTML = '<span class="error">An error occurred. Try again.</span>';
+    });
+});
+</script>
+  </body>
+</html>

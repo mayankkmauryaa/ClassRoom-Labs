@@ -1,0 +1,39 @@
+{
+    "timetable": [
+        {
+            "id": 1,
+            "day": "Monday",
+            "subject": "Algorithms",
+            "faculty": "Dr. Rao",
+            "time": "09:00 - 10:00"
+        },
+        {
+            "id": 2,
+            "day": "Monday",
+            "subject": "OS",
+            "faculty": "Prof. Mehta",
+            "time": "10:15 - 11:15"
+        },
+        {
+            "id": 3,
+            "day": "Tuesday",
+            "subject": "DBMS",
+            "faculty": "Dr. Iyer",
+            "time": "09:00 - 10:00"
+        },
+        {
+            "id": 4,
+            "day": "Wednesday",
+            "subject": "Networks",
+            "faculty": "Ms. Singh",
+            "time": "11:30 - 12:30"
+        },
+        {
+            "id": 5,
+            "day": "Friday",
+            "subject": "Machine Learning",
+            "faculty": "Dr. Gupta",
+            "time": "14:00 - 15:30"
+        }
+    ]
+}

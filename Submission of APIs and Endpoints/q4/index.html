@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Q4 — Multi-API Dashboard</title>
+    <style>
+    body{font-family:Arial;margin:20px}
+    .grid{display:flex;gap:12px}
+    .card{padding:16px;border:1px solid #eee;border-radius:6px;width:160px;text-align:center}
+    .skeleton{height:24px;background:#eee;border-radius:4px;animation: pulse 1.2s infinite}
+    @keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
+    .warning{color:#b00020;margin-top:12px}
+  </style>
+  </head>
+  <body>
+    <h2>Dashboard</h2>
+    <div id="warning" class="warning" style="display:none">Some data could not
+      be loaded.</div>
+    <div class="grid">
+      <div class="card">
+        <div id="users-title">Users</div>
+        <div id="users" class="skeleton"
+          style="height:36px;margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <div id="orders-title">Orders</div>
+        <div id="orders" class="skeleton"
+          style="height:36px;margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <div id="products-title">Products</div>
+        <div id="products" class="skeleton"
+          style="height:36px;margin-top:8px"></div>
+      </div>
+    </div>
+
+    <script>
+const base = 'http://localhost:3004';
+const endpoints = [
+  {key: 'users', url: base + '/users'},
+  {key: 'orders', url: base + '/orders'},
+  {key: 'products', url: base + '/products'}
+];
+
+function showSkeletons(){
+  document.getElementById('users').classList.add('skeleton');
+  document.getElementById('orders').classList.add('skeleton');
+  document.getElementById('products').classList.add('skeleton');
+}
+
+function clearSkeleton(el){
+  el.classList.remove('skeleton');
+}
+
+showSkeletons();
+
+const fetches = endpoints.map(e =>
+  fetch(e.url).then(r => {
+    if (!r.ok) throw new Error('Fetch failed: ' + e.key);
+    return r.json().then(data => ({key: e.key, data}));
+  })
+);
+
+Promise.allSettled(fetches).then(results => {
+  let anyFailed = false;
+  results.forEach(res => {
+    if (res.status === 'fulfilled') {
+      const {key, data} = res.value;
+      clearSkeleton(document.getElementById(key));
+      if (key === 'users') document.getElementById(key).textContent = data.length;
+      if (key === 'orders') document.getElementById(key).textContent = data.length;
+      if (key === 'products') document.getElementById(key).textContent = data.length;
+    } else {
+      anyFailed = true;
+      // show partial content for that card
+      clearSkeleton(document.getElementById('users'));
+      clearSkeleton(document.getElementById('orders'));
+      clearSkeleton(document.getElementById('products'));
+      if (!document.getElementById('users').textContent) document.getElementById('users').textContent = '—';
+      if (!document.getElementById('orders').textContent) document.getElementById('orders').textContent = '—';
+      if (!document.getElementById('products').textContent) document.getElementById('products').textContent = '—';
+    }
+  });
+
+  if (anyFailed) document.getElementById('warning').style.display = 'block';
+});
+</script>
+  </body>
+</html>

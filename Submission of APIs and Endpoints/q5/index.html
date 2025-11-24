@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Q5 — Timetable Viewer</title>
+    <style>
+    body{font-family:Arial;margin:20px}
+    select{padding:6px}
+    .entry{padding:8px;border-bottom:1px solid #eee}
+    .no{color:#666;padding:8px}
+  </style>
+  </head>
+  <body>
+    <h2>College Timetable</h2>
+    <label>Day:
+      <select id="day">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+      </select>
+    </label>
+    <div id="list" style="margin-top:12px"></div>
+
+    <script>
+const API = 'http://localhost:3005/timetable';
+
+function load(day){
+  const url = API + '?day=' + encodeURIComponent(day);
+  const list = document.getElementById('list');
+  list.innerHTML = 'Loading...';
+  fetch(url).then(r => {
+    if (!r.ok) throw new Error('Failed');
+    return r.json();
+  }).then(data => {
+    if (!data.length) {
+      list.innerHTML = '<div class="no">No classes today.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    data.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'entry';
+      div.innerHTML = `<strong>${c.subject}</strong><div>${c.faculty} • ${c.time}</div>`;
+      list.appendChild(div);
+    });
+  }).catch(err => {
+    list.innerHTML = '<div class="no">Failed to load timetable.</div>';
+  });
+}
+
+document.getElementById('day').addEventListener('change', function(){
+  load(this.value);
+});
+
+// initial load: Monday
+load(document.getElementById('day').value);
+</script>
+  </body>
+</html>

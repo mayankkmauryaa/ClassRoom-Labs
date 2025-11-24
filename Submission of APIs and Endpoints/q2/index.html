@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Q2 — Employee Status Dashboard</title>
+    <style>
+    body{font-family:Arial;margin:20px}
+    table{border-collapse:collapse;width:100%;max-width:700px}
+    th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+    .toggle{cursor:pointer;padding:6px 10px;border-radius:16px;border:1px solid #ccc;display:inline-block}
+    .active{background:#e0ffe0}
+    .inactive{background:#ffecec}
+    .error{color:#b00020;margin-top:10px}
+  </style>
+  </head>
+  <body>
+    <h2>Employee Status</h2>
+    <div id="error" class="error" style="display:none"></div>
+    <table id="tbl">
+      <thead><tr><th>Name</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody id="body"></tbody>
+    </table>
+
+    <script>
+const API = 'http://localhost:3002/employees';
+
+// helper to make XHR
+function xhr(method, url, data, cb, onError){
+  const r = new XMLHttpRequest();
+  r.open(method, url, true);
+  r.setRequestHeader('Content-Type','application/json;charset=UTF-8');
+  r.onload = function(){
+    if (r.status >=200 && r.status < 300) cb(JSON.parse(r.responseText));
+    else onError && onError(r);
+  };
+  r.onerror = function(){ onError && onError(r); };
+  r.send(data ? JSON.stringify(data) : null);
+  return r;
+}
+
+function load(){
+  document.getElementById('error').style.display = 'none';
+  xhr('GET', API, null, function(data){
+    const body = document.getElementById('body');
+    body.innerHTML = '';
+    data.forEach(emp => {
+      const tr = document.createElement('tr');
+      const statusClass = emp.status === 'active' ? 'active' : 'inactive';
+      tr.innerHTML = `
+        <td>${emp.name}</td>
+        <td class="${statusClass}" id="status-${emp.id}">${emp.status}</td>
+        <td><button class="toggle" id="btn-${emp.id}">${emp.status==='active'?'Set Inactive':'Set Active'}</button></td>
+      `;
+      body.appendChild(tr);
+      document.getElementById('btn-' + emp.id).addEventListener('click', function(){
+        toggle(emp);
+      });
+    });
+  }, function(){
+    showError('Failed to load employees.');
+  });
+}
+
+function showError(msg){
+  const e = document.getElementById('error');
+  e.textContent = msg;
+  e.style.display = 'block';
+}
+
+// Toggle UI first, send PATCH, revert on failure
+function toggle(emp){
+  const newStatus = emp.status === 'active' ? 'inactive' : 'active';
+  const statusTd = document.getElementById('status-' + emp.id);
+  const btn = document.getElementById('btn-' + emp.id);
+
+  // optimistic UI change
+  statusTd.textContent = newStatus;
+  statusTd.className = newStatus === 'active' ? 'active' : 'inactive';
+  btn.textContent = newStatus === 'active' ? 'Set Inactive' : 'Set Active';
+
+  // send PATCH
+  xhr('PATCH', API + '/' + emp.id, {status: newStatus}, function(updated){
+    // success: update local emp.status
+    emp.status = updated.status;
+  }, function(){
+    // revert UI on error
+    statusTd.textContent = emp.status;
+    statusTd.className = emp.status === 'active' ? 'active' : 'inactive';
+    btn.textContent = emp.status === 'active' ? 'Set Inactive' : 'Set Active';
+    showError('Failed to update status. Changes reverted.');
+  });
+}
+
+load();
+</script>
+  </body>
+</html>
